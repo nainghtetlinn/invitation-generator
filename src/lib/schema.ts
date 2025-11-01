@@ -19,7 +19,7 @@ export const memberSchema = z.object({
 export const groupSchema = z.object({
   title: z.string().min(1, "Title is required"),
   no: z.string().min(1, "Group number is required"),
-  members: z.array(memberSchema).min(1),
+  members: z.array(memberSchema).min(1, "At least one member is required"),
 });
 
 export const invitationSchema = z.object({
@@ -34,11 +34,14 @@ export const invitationSchema = z.object({
     .refine((val) => YEARS.find((y) => y.text === val), "Please select a year"),
   academic: academicYearSchema,
   date: z.coerce
-    .date()
+    .date({ error: "Please select a date" })
     .refine((date) => date > new Date(), "Date cannot be in the past"),
   time: z.string().min(1, "Time is required"),
   place: z.string().min(1, "Place is required"),
-  groups: z.array(groupSchema).max(6),
+  groups: z
+    .array(groupSchema)
+    .min(1, "At least one group is required")
+    .max(5, "You can add at most 5 groups"),
 });
 
 export type Invitation = z.infer<typeof invitationSchema>;
