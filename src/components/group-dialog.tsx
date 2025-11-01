@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Edit2, Plus, Trash2 } from "lucide-react";
+import { Edit2, Info, Plus, Trash2 } from "lucide-react";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { groupSchema, type Group } from "../lib/schema";
@@ -87,6 +87,7 @@ export const GroupDialog = ({
           className="modal-box"
         >
           <h3 className="font-bold text-lg mb-2">Group</h3>
+
           <section className="space-y-4">
             <div>
               <label
@@ -145,39 +146,60 @@ export const GroupDialog = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {fields.map((member, index) => (
-                    <tr key={member.id}>
-                      <th>{index + 1}</th>
-                      <td>
-                        {member.name} {member.repeater && "®"}
-                      </td>
-                      <td>{member.rollNo}</td>
-                      <td className="flex justify-end gap-2">
-                        <button
-                          className="btn btn-circle btn-secondary"
-                          type="button"
-                          onClick={() => {
-                            handleEdit(index);
-                          }}
-                        >
-                          <Edit2 className="w-4 h-4" />
-                        </button>
-                        <button
-                          className="btn btn-circle btn-error"
-                          type="button"
-                          onClick={() => {
-                            handelRemove(index);
-                          }}
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                  {fields.length > 0 ? (
+                    fields.map((member, index) => (
+                      <tr key={member.id}>
+                        <th>{index + 1}</th>
+                        <td>
+                          {member.name} {member.repeater && "®"}
+                        </td>
+                        <td>{member.rollNo}</td>
+                        <td className="flex justify-end gap-2">
+                          <button
+                            className="btn btn-circle btn-secondary"
+                            type="button"
+                            onClick={() => {
+                              handleEdit(index);
+                            }}
+                          >
+                            <Edit2 className="w-4 h-4" />
+                          </button>
+                          <button
+                            className="btn btn-circle btn-error"
+                            type="button"
+                            onClick={() => {
+                              handelRemove(index);
+                            }}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td
+                        colSpan={4}
+                        className="h-24 text-center"
+                      >
+                        No Member
                       </td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
+              {form.formState.errors.members && (
+                <div
+                  role="alert"
+                  className="alert alert-error alert-soft"
+                >
+                  <Info />
+                  <span>{form.formState.errors.members.message}</span>
+                </div>
+              )}
             </div>
           </section>
+
           <div className="modal-action">
             <button
               className="btn"

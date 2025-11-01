@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Edit2, Plus, Trash2 } from "lucide-react";
+import { Edit2, Info, Plus, Trash2 } from "lucide-react";
 import { useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { GroupDialog } from "./components/group-dialog";
@@ -247,48 +247,68 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {fields.map((group, index) => (
-                  <tr key={group.id}>
-                    <th>{index + 1}</th>
-                    <td>{group.no}</td>
-                    <td>
-                      {group.members.map((member, i) => (
-                        <p key={i}>
-                          {member.name}
-                          {member.repeater && "®"}
-                        </p>
-                      ))}
-                    </td>
-                    <td>
-                      {group.members.map((member, i) => (
-                        <p key={i}>{member.rollNo}</p>
-                      ))}
-                    </td>
-                    <td>{group.title}</td>
-                    <td className="flex justify-end gap-2">
-                      <button
-                        className="btn btn-circle btn-secondary"
-                        type="button"
-                        onClick={() => {
-                          handleEdit(index);
-                        }}
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button
-                        className="btn btn-circle btn-error"
-                        type="button"
-                        onClick={() => {
-                          handleRemove(index);
-                        }}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
+                {fields.length > 0 ? (
+                  fields.map((group, index) => (
+                    <tr key={group.id}>
+                      <th>{index + 1}</th>
+                      <td>{group.no}</td>
+                      <td>
+                        {group.members.map((member, i) => (
+                          <p key={i}>
+                            {member.name}
+                            {member.repeater && "®"}
+                          </p>
+                        ))}
+                      </td>
+                      <td>
+                        {group.members.map((member, i) => (
+                          <p key={i}>{member.rollNo}</p>
+                        ))}
+                      </td>
+                      <td>{group.title}</td>
+                      <td className="flex justify-end gap-2">
+                        <button
+                          className="btn btn-circle btn-secondary"
+                          type="button"
+                          onClick={() => {
+                            handleEdit(index);
+                          }}
+                        >
+                          <Edit2 className="w-4 h-4" />
+                        </button>
+                        <button
+                          className="btn btn-circle btn-error"
+                          type="button"
+                          onClick={() => {
+                            handleRemove(index);
+                          }}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      colSpan={6}
+                      className="h-24 text-center"
+                    >
+                      No Group
                     </td>
                   </tr>
-                ))}
+                )}
               </tbody>
             </table>
+            {form.formState.errors.groups && (
+              <div
+                role="alert"
+                className="alert alert-error alert-soft"
+              >
+                <Info />
+                <span>{form.formState.errors.groups.message}</span>
+              </div>
+            )}
           </div>
 
           <button className="btn btn-neutral">Submit</button>
