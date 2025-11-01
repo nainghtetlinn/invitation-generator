@@ -15,6 +15,7 @@
     "dayjs": "^1.11.13",
     "docxtemplater": "^3.65.2",
     "file-saver": "^2.0.5",
+    "lucide-react": "^0.548.0",
     "pizzip": "^3.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
