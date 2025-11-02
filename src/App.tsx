@@ -21,20 +21,7 @@ function App() {
       date: "",
       time: "",
       place: "",
-      groups: [
-        {
-          title: "Hello",
-          members: [
-            { name: "hello", rollNo: "hello", repeater: false },
-            { name: "world", rollNo: "world", repeater: true },
-            { name: "javascript", rollNo: "javascript", repeater: false },
-          ],
-        },
-        {
-          title: "Wrold",
-          members: [{ name: "world", rollNo: "world", repeater: false }],
-        },
-      ],
+      groups: [],
     },
   });
 
