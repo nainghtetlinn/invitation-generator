@@ -43,7 +43,7 @@ export const GroupDialog = ({
           ref={ref}
           className="modal"
         >
-          <main className="modal-box">
+          <main className="modal-box bg-base-200">
             <h3 className="font-bold text-lg mb-2">Group</h3>
 
             <section className="space-y-4">

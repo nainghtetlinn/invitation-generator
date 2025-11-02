@@ -74,7 +74,7 @@ export const GroupsTable = ({ form }: { form: UseFormReturn<Invitation> }) => {
             items={fields.map((f) => f.id)}
             strategy={verticalListSortingStrategy}
           >
-            <table className="table overflow-hidden">
+            <table className="table overflow-hidden bg-base-100">
               <thead>
                 <tr>
                   <th>Group Number</th>
@@ -122,7 +122,7 @@ export const GroupsTable = ({ form }: { form: UseFormReturn<Invitation> }) => {
         {form.formState.errors.groups && (
           <div
             role="alert"
-            className="alert alert-error alert-soft mt-2"
+            className="alert alert-error mt-2"
           >
             <Info />
             <span>{form.formState.errors.groups.message}</span>

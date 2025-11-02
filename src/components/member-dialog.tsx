@@ -42,7 +42,7 @@ export const MemberDialog = ({
           ref={ref}
           className="modal"
         >
-          <main className="modal-box">
+          <main className="modal-box bg-base-200">
             <h3 className="font-bold text-lg mb-2">Member</h3>
 
             <section className="space-y-4">
@@ -90,7 +90,7 @@ export const MemberDialog = ({
                 <label className="label">
                   <input
                     type="checkbox"
-                    className="checkbox"
+                    className="checkbox checkbox-primary"
                     {...form.register("repeater")}
                   />
                   Repeater ?

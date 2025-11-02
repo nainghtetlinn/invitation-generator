@@ -53,7 +53,7 @@ function App() {
               type="button"
               disabled={loading}
               onClick={form.handleSubmit(onSubmit)}
-              className="btn btn-secondary"
+              className="btn btn-primary"
             >
               Generate {loading && <Loader2 className="animate-spin" />}
             </button>
