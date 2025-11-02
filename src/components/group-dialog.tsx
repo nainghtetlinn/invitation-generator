@@ -1,9 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Edit2, Info, Plus, Trash2 } from "lucide-react";
-import { useEffect, useRef, useState, type RefObject } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useEffect, type RefObject } from "react";
+import { useForm } from "react-hook-form";
 import { groupSchema, type Group } from "../lib/schema";
-import { MemberDialog } from "./member-dialog";
+import { MembersTable } from "./members-table";
 
 export const GroupDialog = ({
   defaultValues,
@@ -14,22 +13,9 @@ export const GroupDialog = ({
   onSubmit: (data: Group) => void;
   ref: RefObject<HTMLDialogElement | null>;
 }) => {
-  const memberRef = useRef<HTMLDialogElement>(null);
-  const [editIndex, setEditIndex] = useState<number | null>(null);
-
   const form = useForm({
     resolver: zodResolver(groupSchema),
     defaultValues: defaultValues ?? { title: "", members: [] },
-  });
-
-  const {
-    fields,
-    append: appendMember,
-    update: updateMember,
-    remove: removeMember,
-  } = useFieldArray({
-    control: form.control,
-    name: "members",
   });
 
   useEffect(() => {
@@ -49,43 +35,13 @@ export const GroupDialog = ({
     ref.current?.close();
   };
 
-  const handleAdd = () => {
-    setEditIndex(null);
-    memberRef.current?.showModal();
-  };
-
-  const handleEdit = (index: number) => {
-    setEditIndex(index);
-    memberRef.current?.showModal();
-  };
-
-  const handelRemove = (index: number) => {
-    removeMember(index);
-  };
-
   return (
     <>
-      <MemberDialog
-        ref={memberRef}
-        defaultValues={editIndex !== null ? fields[editIndex] : undefined}
-        onSubmit={(data) => {
-          if (editIndex !== null) {
-            updateMember(editIndex, data);
-            setEditIndex(null);
-          } else {
-            appendMember(data);
-          }
-          memberRef.current?.close();
-        }}
-      />
       <dialog
         ref={ref}
         className="modal"
       >
-        <form
-          onSubmit={form.handleSubmit(handleSubmit)}
-          className="modal-box"
-        >
+        <main className="modal-box">
           <h3 className="font-bold text-lg mb-2">Group</h3>
 
           <section className="space-y-4">
@@ -109,77 +65,7 @@ export const GroupDialog = ({
               )}
             </div>
 
-            <div className="overflow-x-auto">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>No.</th>
-                    <th>Name</th>
-                    <th>Roll Number</th>
-                    <th className="flex justify-end">
-                      <button
-                        className="btn btn-circle"
-                        type="button"
-                        onClick={handleAdd}
-                      >
-                        <Plus className="w-4 h-4" />
-                      </button>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {fields.length > 0 ? (
-                    fields.map((member, index) => (
-                      <tr key={member.id}>
-                        <th>{index + 1}</th>
-                        <td>
-                          {member.name} {member.repeater && "®"}
-                        </td>
-                        <td>{member.rollNo}</td>
-                        <td className="flex justify-end gap-2">
-                          <button
-                            className="btn btn-circle btn-secondary"
-                            type="button"
-                            onClick={() => {
-                              handleEdit(index);
-                            }}
-                          >
-                            <Edit2 className="w-4 h-4" />
-                          </button>
-                          <button
-                            className="btn btn-circle btn-error"
-                            type="button"
-                            onClick={() => {
-                              handelRemove(index);
-                            }}
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td
-                        colSpan={4}
-                        className="h-24 text-center"
-                      >
-                        No Member
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-              {form.formState.errors.members && (
-                <div
-                  role="alert"
-                  className="alert alert-error alert-soft"
-                >
-                  <Info />
-                  <span>{form.formState.errors.members.message}</span>
-                </div>
-              )}
-            </div>
+            <MembersTable form={form} />
           </section>
 
           <div className="modal-action">
@@ -190,9 +76,15 @@ export const GroupDialog = ({
             >
               Cancel
             </button>
-            <button className="btn btn-primary">Save</button>
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={form.handleSubmit(handleSubmit)}
+            >
+              Save
+            </button>
           </div>
-        </form>
+        </main>
       </dialog>
     </>
   );

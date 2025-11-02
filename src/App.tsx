@@ -24,7 +24,11 @@ function App() {
       groups: [
         {
           title: "Hello",
-          members: [{ name: "hello", rollNo: "hello", repeater: false }],
+          members: [
+            { name: "hello", rollNo: "hello", repeater: false },
+            { name: "world", rollNo: "world", repeater: true },
+            { name: "javascript", rollNo: "javascript", repeater: false },
+          ],
         },
         {
           title: "Wrold",
