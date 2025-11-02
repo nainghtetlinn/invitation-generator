@@ -39,11 +39,9 @@ export const MemberDialog = ({
       ref={ref}
       className="modal"
     >
-      <form
-        onSubmit={form.handleSubmit(handleSubmit)}
-        className="modal-box"
-      >
+      <main className="modal-box">
         <h3 className="font-bold text-lg mb-2">Member</h3>
+
         <section className="space-y-4">
           <div>
             <label
@@ -94,17 +92,24 @@ export const MemberDialog = ({
             </label>
           </div>
         </section>
+
         <div className="modal-action">
           <button
-            type="button"
             className="btn"
+            type="button"
             onClick={handleClose}
           >
             Cancel
           </button>
-          <button className="btn btn-primary">Save</button>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={form.handleSubmit(handleSubmit)}
+          >
+            Save
+          </button>
         </div>
-      </form>
+      </main>
     </dialog>
   );
 };
