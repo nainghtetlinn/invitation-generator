@@ -1,15 +1,18 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Edit2, Info, Plus, Trash2 } from "lucide-react";
+import { Edit2, Info, Loader2, Plus, Trash2 } from "lucide-react";
 import { useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { GroupDialog } from "./components/group-dialog";
 import { DEPARTMENTS, YEARS } from "./lib/constants";
 import { invitationSchema, type Invitation } from "./lib/schema";
 import { generate } from "./lib/utils";
+import { toast } from "sonner";
+import { Toast } from "./components/toast";
 
 function App() {
   const groupRef = useRef<HTMLDialogElement>(null);
   const [editIndex, setEditIndex] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const form = useForm({
     resolver: zodResolver(invitationSchema),
@@ -34,8 +37,16 @@ function App() {
     name: "groups",
   });
 
-  const onSubmit = (data: Invitation) => {
-    generate(data);
+  const onSubmit = async (data: Invitation) => {
+    try {
+      setLoading(true);
+      await generate(data);
+    } catch (error) {
+      console.log(error);
+      toast.custom(() => <Toast title="Something went wrong." />);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleAdd = () => {
@@ -293,7 +304,12 @@ function App() {
           </div>
 
           <div className="flex justify-end">
-            <button className="btn btn-secondary">Generate</button>
+            <button
+              disabled={loading}
+              className="btn btn-secondary"
+            >
+              Generate {loading && <Loader2 className="animate-spin" />}
+            </button>
           </div>
         </form>
       </main>
