@@ -9,7 +9,7 @@ export async function generate(data: Invitation) {
   const transformedData = toDto(data);
 
   // Load the template file as binary
-  const response = await fetch("/template.docx");
+  const response = await fetch(import.meta.env.VITE_TEMPLATE_URL);
   const arrayBuffer = await response.arrayBuffer();
 
   const zip = new PizZip(arrayBuffer);
