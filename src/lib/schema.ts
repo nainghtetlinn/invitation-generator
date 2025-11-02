@@ -32,9 +32,15 @@ export const invitationSchema = z.object({
     .string()
     .refine((val) => YEARS.find((y) => y.text === val), "Please select a year"),
   academic: academicYearSchema,
-  date: z.coerce
-    .date({ error: "Please select a date" })
-    .refine((date) => date > new Date(), "Date cannot be in the past"),
+  date: z
+    .string()
+    .refine((val) => !isNaN(Date.parse(val)), {
+      message: "Please select a date",
+    })
+    .refine(
+      (date) => new Date(date) > new Date(),
+      "Date cannot be in the past"
+    ),
   time: z.string().min(1, "Time is required"),
   place: z.string().min(1, "Place is required"),
   groups: z
