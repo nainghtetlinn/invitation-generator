@@ -77,7 +77,6 @@ export const GroupsTable = ({ form }: { form: UseFormReturn<Invitation> }) => {
             <table className="table overflow-hidden">
               <thead>
                 <tr>
-                  <th></th>
                   <th>Group Number</th>
                   <th>Group Members</th>
                   <th>Roll Number</th>
@@ -161,13 +160,15 @@ const GroupItem = ({
       style={style}
       {...attributes}
     >
-      <td
-        className="cursor-grab"
-        {...listeners}
-      >
-        <GripVertical className="w-4 h-4 inline mr-2 opacity-60" />
+      <td>
+        <span
+          className="cursor-grab"
+          {...listeners}
+        >
+          <GripVertical className="w-4 h-4 inline mr-2 opacity-60" />
+        </span>
+        {index + 1}
       </td>
-      <td>{index + 1}</td>
       <td>
         {group.members.map((member, i) => (
           <p key={i}>

@@ -77,7 +77,6 @@ export const MembersTable = ({ form }: { form: UseFormReturn<Group> }) => {
             <table className="table overflow-hidden">
               <thead>
                 <tr>
-                  <th></th>
                   <th>No.</th>
                   <th>Name</th>
                   <th>Roll Number</th>
@@ -160,13 +159,15 @@ const MemberItem = ({
       style={style}
       {...attributes}
     >
-      <td
-        className="cursor-grab"
-        {...listeners}
-      >
-        <GripVertical className="w-4 h-4 inline mr-2 opacity-60" />
-      </td>
-      <th>{index + 1}</th>
+      <th>
+        <span
+          className="cursor-grab"
+          {...listeners}
+        >
+          <GripVertical className="w-4 h-4 inline mr-2 opacity-60" />
+        </span>
+        {index + 1}
+      </th>
       <td>
         {member.name} {member.repeater && "®"}
       </td>
