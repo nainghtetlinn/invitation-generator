@@ -21,13 +21,7 @@ export const GroupsTable = ({ form }: { form: UseFormReturn<Invitation> }) => {
   const groupRef = useRef<HTMLDialogElement>(null);
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
-  const {
-    fields,
-    append: appendGroup,
-    update: updateGroup,
-    remove: removeGroup,
-    move,
-  } = useFieldArray({
+  const { fields, append, update, remove, move } = useFieldArray({
     control: form.control,
     name: "groups",
   });
@@ -43,7 +37,7 @@ export const GroupsTable = ({ form }: { form: UseFormReturn<Invitation> }) => {
   };
 
   const handleRemove = (index: number) => {
-    removeGroup(index);
+    remove(index);
   };
 
   return (
@@ -53,10 +47,10 @@ export const GroupsTable = ({ form }: { form: UseFormReturn<Invitation> }) => {
         defaultValues={editIndex !== null ? fields[editIndex] : undefined}
         onSubmit={(data) => {
           if (editIndex !== null) {
-            updateGroup(editIndex, data);
+            update(editIndex, data);
             setEditIndex(null);
           } else {
-            appendGroup(data);
+            append(data);
           }
           groupRef.current?.close();
         }}
