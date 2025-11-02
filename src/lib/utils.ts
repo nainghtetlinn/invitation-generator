@@ -1,34 +1,41 @@
-import PizZip from 'pizzip'
-import Docxtemplater from 'docxtemplater'
-import expressionParser from 'docxtemplater/expressions'
-import { saveAs } from 'file-saver'
+import Docxtemplater from "docxtemplater";
+import expressionParser from "docxtemplater/expressions";
+import { saveAs } from "file-saver";
+import PizZip from "pizzip";
+import { toDto } from "./dto";
+import type { Invitation, Member } from "./schema";
 
-export async function generate(data: unknown) {
+export async function generate(data: Invitation) {
+  const transformedData = toDto(data);
+
   // Load the template file as binary
-  const response = await fetch('/template.docx')
-  const arrayBuffer = await response.arrayBuffer()
+  const response = await fetch("/template.docx");
+  const arrayBuffer = await response.arrayBuffer();
 
-  const zip = new PizZip(arrayBuffer)
+  const zip = new PizZip(arrayBuffer);
   const doc = new Docxtemplater(zip, {
     paragraphLoop: true,
     linebreaks: true,
     parser: expressionParser.configure({
       filters: {
-        joinNames: arr => arr.map((m: { name: string }) => m.name).join('\n'),
-        joinRolls: arr => arr.map((m: { roll: string }) => m.roll).join('\n'),
+        joinNames: (arr: Member[]) => arr.map((m) => m.name).join("\n"),
+        joinRolls: (arr: Member[]) =>
+          arr.map((m) => `${m.rollNo}${m.repeater ? " ®" : ""}`).join("\n"),
+        upper: (str: string) => str.toUpperCase(),
+        lower: (str: string) => str.toLowerCase(),
       },
     }),
-  })
+  });
 
-  doc.render(data)
+  doc.render(transformedData);
 
   // Get the document as a blob
   const out = doc.getZip().generate({
-    type: 'blob',
+    type: "blob",
     mimeType:
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-  })
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  });
 
   // Trigger download
-  saveAs(out, 'output.docx')
+  saveAs(out, "output.docx");
 }

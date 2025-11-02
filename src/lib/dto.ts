@@ -13,5 +13,10 @@ export const toDto = (data: Invitation) => {
       "hh:mm A"
     ),
     place: data.place,
+    groups: data.groups.map((g, i) => ({
+      title: g.title,
+      members: g.members,
+      no: i + 1,
+    })),
   };
 };

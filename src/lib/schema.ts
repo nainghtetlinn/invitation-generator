@@ -18,7 +18,6 @@ export const memberSchema = z.object({
 
 export const groupSchema = z.object({
   title: z.string().min(1, "Title is required"),
-  no: z.string().min(1, "Group number is required"),
   members: z.array(memberSchema).min(1, "At least one member is required"),
 });
 

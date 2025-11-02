@@ -5,6 +5,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { GroupDialog } from "./components/group-dialog";
 import { DEPARTMENTS, YEARS } from "./lib/constants";
 import { invitationSchema, type Invitation } from "./lib/schema";
+import { generate } from "./lib/utils";
 
 function App() {
   const groupRef = useRef<HTMLDialogElement>(null);
@@ -19,24 +20,7 @@ function App() {
       date: "",
       time: "",
       place: "",
-      groups: [
-        {
-          title: "Healthier",
-          no: "Group I",
-          members: [
-            { name: "Naing", rollNo: "1", repeater: false },
-            { name: "Htet", rollNo: "2", repeater: true },
-          ],
-        },
-        {
-          title: "Unhealthier",
-          no: "Group II",
-          members: [
-            { name: "Naing", rollNo: "1", repeater: false },
-            { name: "Htet", rollNo: "2", repeater: false },
-          ],
-        },
-      ],
+      groups: [],
     },
   });
 
@@ -51,8 +35,7 @@ function App() {
   });
 
   const onSubmit = (data: Invitation) => {
-    // const transformed = toDto(data);
-    console.log(data);
+    generate(data);
   };
 
   const handleAdd = () => {
@@ -230,7 +213,6 @@ function App() {
             <table className="table">
               <thead>
                 <tr>
-                  <th>No.</th>
                   <th>Group Number</th>
                   <th>Group Members</th>
                   <th>Roll Number</th>
@@ -251,7 +233,6 @@ function App() {
                   fields.map((group, index) => (
                     <tr key={group.id}>
                       <th>{index + 1}</th>
-                      <td>{group.no}</td>
                       <td>
                         {group.members.map((member, i) => (
                           <p key={i}>
@@ -311,7 +292,9 @@ function App() {
             )}
           </div>
 
-          <button className="btn btn-neutral">Submit</button>
+          <div className="flex justify-end">
+            <button className="btn btn-secondary">Generate</button>
+          </div>
         </form>
       </main>
     </>

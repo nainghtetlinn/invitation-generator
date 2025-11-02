@@ -19,7 +19,7 @@ export const GroupDialog = ({
 
   const form = useForm({
     resolver: zodResolver(groupSchema),
-    defaultValues: defaultValues ?? { title: "", no: "", members: [] },
+    defaultValues: defaultValues ?? { title: "", members: [] },
   });
 
   const {
@@ -36,13 +36,13 @@ export const GroupDialog = ({
     if (defaultValues) {
       form.reset(defaultValues);
     } else {
-      form.reset({ title: "", no: "", members: [] });
+      form.reset({ title: "", members: [] });
     }
   }, [form, defaultValues]);
 
   const handleSubmit = (data: Group) => {
     onSubmit(data);
-    form.reset({ title: "", no: "", members: [] });
+    form.reset({ title: "", members: [] });
   };
 
   const handleClose = () => {
@@ -106,24 +106,6 @@ export const GroupDialog = ({
                 <p className="text-error">
                   {form.formState.errors.title.message}
                 </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                className={`input w-full ${
-                  form.formState.errors.no && "input-error"
-                }`}
-              >
-                <span className="label">Group Number</span>
-                <input
-                  type="text"
-                  placeholder="Group I"
-                  {...form.register("no")}
-                />
-              </label>
-              {form.formState.errors.no && (
-                <p className="text-error">{form.formState.errors.no.message}</p>
               )}
             </div>
 
