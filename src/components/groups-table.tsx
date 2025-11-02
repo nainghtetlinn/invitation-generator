@@ -1,16 +1,16 @@
 import {
+  closestCenter,
   DndContext,
   PointerSensor,
   useSensor,
   useSensors,
-  closestCenter,
 } from "@dnd-kit/core";
 import {
+  arrayMove,
   SortableContext,
   verticalListSortingStrategy,
-  arrayMove,
 } from "@dnd-kit/sortable";
-import { Edit2, GripVertical, Plus, Trash2, Info } from "lucide-react";
+import { Edit2, GripVertical, Info, Plus, Trash2 } from "lucide-react";
 import type { FieldArrayWithId, UseFormReturn } from "react-hook-form";
 import type { Invitation } from "../lib/schema";
 import { SortableRow } from "./sortable-row";
@@ -48,7 +48,7 @@ export const GroupsTable = ({
           items={fields.map((f) => f.id)}
           strategy={verticalListSortingStrategy}
         >
-          <table className="table">
+          <table className="table overflow-hidden">
             <thead>
               <tr>
                 <th>Group Number</th>
@@ -126,6 +126,8 @@ export const GroupsTable = ({
             </tbody>
           </table>
         </SortableContext>
+
+        {/* <DragOverlay /> */}
       </DndContext>
 
       {form.formState.errors.groups && (

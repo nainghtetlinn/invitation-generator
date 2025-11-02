@@ -88,7 +88,7 @@ function App() {
           groupRef.current?.close();
         }}
       />
-      <main className="mx-auto container">
+      <main className="mx-auto container px-2">
         <h1 className="text-center text-2xl font-bold text-base-content py-4">
           Generate Invitation
         </h1>
