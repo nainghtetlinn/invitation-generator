@@ -21,13 +21,7 @@ export const MembersTable = ({ form }: { form: UseFormReturn<Group> }) => {
   const memberRef = useRef<HTMLDialogElement>(null);
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
-  const {
-    fields,
-    append: appendMember,
-    update: updateMember,
-    remove: removeMember,
-    move,
-  } = useFieldArray({
+  const { fields, append, update, remove, move } = useFieldArray({
     control: form.control,
     name: "members",
   });
@@ -43,7 +37,7 @@ export const MembersTable = ({ form }: { form: UseFormReturn<Group> }) => {
   };
 
   const handleRemove = (index: number) => {
-    removeMember(index);
+    remove(index);
   };
 
   return (
@@ -53,10 +47,10 @@ export const MembersTable = ({ form }: { form: UseFormReturn<Group> }) => {
         defaultValues={editIndex !== null ? fields[editIndex] : undefined}
         onSubmit={(data) => {
           if (editIndex !== null) {
-            updateMember(editIndex, data);
+            update(editIndex, data);
             setEditIndex(null);
           } else {
-            appendMember(data);
+            append(data);
           }
           memberRef.current?.close();
         }}
