@@ -54,7 +54,7 @@ export const GroupDialog = ({
                   className={`input w-full ${
                     form.formState.errors.title && "input-error"
                   }`}
-                  placeholder="Healthier"
+                  placeholder="Eg. Healthier"
                   {...form.register("title")}
                 />
                 {form.formState.errors.title && (
