@@ -1,7 +1,8 @@
 import {
   closestCenter,
   DndContext,
-  PointerSensor,
+  MouseSensor,
+  TouchSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
@@ -57,7 +58,19 @@ export const GroupsTable = ({ form }: { form: UseFormReturn<Invitation> }) => {
       />
       <div className="overflow-x-auto">
         <DndContext
-          sensors={useSensors(useSensor(PointerSensor))}
+          sensors={useSensors(
+            useSensor(MouseSensor, {
+              activationConstraint: {
+                distance: 5,
+              },
+            }),
+            useSensor(TouchSensor, {
+              activationConstraint: {
+                delay: 200,
+                tolerance: 5,
+              },
+            })
+          )}
           collisionDetection={closestCenter}
           onDragEnd={(event) => {
             const { active, over } = event;
