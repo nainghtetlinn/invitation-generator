@@ -3,11 +3,13 @@ import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Footer } from "./components/footer";
 import { FormFields } from "./components/form-fields";
 import { GroupsTable } from "./components/groups-table";
 import { Toast } from "./components/toast";
 import { invitationSchema, type Invitation } from "./lib/schema";
 import { generate } from "./lib/utils";
+import { Header } from "./components/header";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -39,10 +41,8 @@ function App() {
 
   return (
     <>
-      <main className="mx-auto container px-2">
-        <h1 className="text-center text-2xl font-bold text-base-content py-4">
-          Generate Invitation
-        </h1>
+      <Header />
+      <main className="mx-auto container px-2 pt-4 h-svh">
         <section className="space-y-4">
           <FormFields form={form} />
 
@@ -60,6 +60,7 @@ function App() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }
