@@ -46,45 +46,39 @@ export const MemberDialog = ({
             <h3 className="font-bold text-lg mb-2">Member</h3>
 
             <section className="space-y-4">
-              <div>
-                <label
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend">Name</legend>
+                <input
+                  type="text"
                   className={`input w-full ${
                     form.formState.errors.name && "input-error"
                   }`}
-                >
-                  <span className="label">Name</span>
-                  <input
-                    type="text"
-                    placeholder="Tsuki"
-                    {...form.register("name")}
-                  />
-                </label>
+                  placeholder="Eg. Tsuki"
+                  {...form.register("name")}
+                />
                 {form.formState.errors.name && (
-                  <p className="text-error">
+                  <p className="text-error label">
                     {form.formState.errors.name.message}
                   </p>
                 )}
-              </div>
+              </fieldset>
 
-              <div>
-                <label
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend">Roll Number</legend>
+                <input
+                  type="text"
                   className={`input w-full ${
                     form.formState.errors.rollNo && "input-error"
                   }`}
-                >
-                  <span className="label">Roll Number</span>
-                  <input
-                    type="text"
-                    placeholder="2IT-1"
-                    {...form.register("rollNo")}
-                  />
-                </label>
+                  placeholder="Eg. 2IT-1"
+                  {...form.register("rollNo")}
+                />
                 {form.formState.errors.rollNo && (
-                  <p className="text-error">
+                  <p className="text-error label">
                     {form.formState.errors.rollNo.message}
                   </p>
                 )}
-              </div>
+              </fieldset>
 
               <div>
                 <label className="label">

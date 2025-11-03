@@ -53,22 +53,21 @@ function App() {
       />
       <Header />
       <main className="mx-auto container px-2 py-4 min-h-svh">
-        <section className="space-y-4">
+        <section className="space-y-2">
           <FormFields form={form} />
 
           <GroupsTable form={form} />
-
-          <div className="flex justify-end">
-            <button
-              type="button"
-              disabled={loading}
-              onClick={handleGenerate}
-              className="btn btn-primary"
-            >
-              Generate {loading && <Loader2 className="animate-spin" />}
-            </button>
-          </div>
         </section>
+        <div className="flex justify-end mt-4">
+          <button
+            type="button"
+            disabled={loading}
+            onClick={handleGenerate}
+            className="btn btn-primary"
+          >
+            Generate {loading && <Loader2 className="animate-spin" />}
+          </button>
+        </div>
       </main>
       <Footer />
     </>

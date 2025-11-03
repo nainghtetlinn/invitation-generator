@@ -82,7 +82,7 @@ export const MembersTable = ({ form }: { form: UseFormReturn<Group> }) => {
                   <th>Roll Number</th>
                   <th className="flex justify-end">
                     <button
-                      className="btn btn-circle"
+                      className="btn btn-circle btn-primary"
                       type="button"
                       onClick={handleAdd}
                     >
@@ -159,7 +159,7 @@ const MemberItem = ({
       style={style}
       {...attributes}
     >
-      <th>
+      <td className="whitespace-nowrap">
         <span
           className="cursor-grab"
           {...listeners}
@@ -167,21 +167,21 @@ const MemberItem = ({
           <GripVertical className="w-4 h-4 inline mr-2 opacity-60" />
         </span>
         {index + 1}
-      </th>
-      <td>
+      </td>
+      <td className="whitespace-nowrap">
         {member.name} {member.repeater && "®"}
       </td>
       <td>{member.rollNo}</td>
-      <td className="flex justify-end gap-2">
+      <td className="flex justify-end gap-2 whitespace-nowrap">
         <button
-          className="btn btn-circle btn-secondary"
+          className="btn btn-sm btn-circle btn-secondary"
           type="button"
           onClick={handleEdit}
         >
           <Edit2 className="w-4 h-4" />
         </button>
         <button
-          className="btn btn-circle btn-error"
+          className="btn btn-sm btn-circle btn-error"
           type="button"
           onClick={handleRemove}
         >

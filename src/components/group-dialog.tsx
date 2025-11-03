@@ -47,25 +47,22 @@ export const GroupDialog = ({
             <h3 className="font-bold text-lg mb-2">Group</h3>
 
             <section className="space-y-4">
-              <div>
-                <label
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend">Group Title</legend>
+                <input
+                  type="text"
                   className={`input w-full ${
                     form.formState.errors.title && "input-error"
                   }`}
-                >
-                  <span className="label">Group Title</span>
-                  <input
-                    type="text"
-                    placeholder="Healthier"
-                    {...form.register("title")}
-                  />
-                </label>
+                  placeholder="Healthier"
+                  {...form.register("title")}
+                />
                 {form.formState.errors.title && (
-                  <p className="text-error">
+                  <p className="text-error label">
                     {form.formState.errors.title.message}
                   </p>
                 )}
-              </div>
+              </fieldset>
 
               <MembersTable form={form} />
             </section>

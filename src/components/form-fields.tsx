@@ -8,130 +8,120 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
   return (
     <>
       {/* Department */}
-      <div>
-        <label
+      <fieldset className="fieldset">
+        <legend className="fieldset-legend">Department</legend>
+        <select
+          {...register("department")}
           className={`select w-full ${
             formState.errors.department && "select-error"
           }`}
         >
-          <span className="label">Department</span>
-          <select {...register("department")}>
+          <option
+            disabled
+            value="select a department"
+          >
+            Select a department
+          </option>
+          {DEPARTMENTS.map((d) => (
             <option
-              disabled
-              value="select a department"
+              key={d.short}
+              value={d.short}
             >
-              Select a department
+              {d.long}
             </option>
-            {DEPARTMENTS.map((d) => (
-              <option
-                key={d.short}
-                value={d.short}
-              >
-                {d.long}
-              </option>
-            ))}
-          </select>
-        </label>
+          ))}
+        </select>
         {formState.errors.department && (
-          <p className="text-error">{formState.errors.department.message}</p>
+          <p className="text-error label">
+            {formState.errors.department.message}
+          </p>
         )}
-      </div>
+      </fieldset>
 
       {/* Year */}
-      <div>
-        <label
+      <fieldset className="fieldset">
+        <legend className="fieldset-legend">Year</legend>
+        <select
+          {...register("year")}
           className={`select w-full ${formState.errors.year && "select-error"}`}
         >
-          <span className="label">Year</span>
-          <select {...register("year")}>
+          <option
+            disabled
+            value="select a year"
+          >
+            Select a year
+          </option>
+          {YEARS.map((y) => (
             <option
-              disabled
-              value="select a year"
+              key={y.number}
+              value={y.text}
             >
-              Select a year
+              {y.text} year
             </option>
-            {YEARS.map((y) => (
-              <option
-                key={y.number}
-                value={y.text}
-              >
-                {y.text} year
-              </option>
-            ))}
-          </select>
-        </label>
+          ))}
+        </select>
         {formState.errors.year && (
-          <p className="text-error">{formState.errors.year.message}</p>
+          <p className="text-error label">{formState.errors.year.message}</p>
         )}
-      </div>
+      </fieldset>
 
       {/* Academic */}
-      <div>
-        <label
+      <fieldset className="fieldset">
+        <legend className="fieldset-legend">Academic Year</legend>
+        <input
+          type="text"
           className={`input w-full ${
             formState.errors.academic && "input-error"
           }`}
-        >
-          <span className="label">Academic</span>
-          <input
-            type="text"
-            placeholder="2019-2020"
-            {...register("academic")}
-          />
-        </label>
+          placeholder="Eg. 2019-2020"
+          {...register("academic")}
+        />
         {formState.errors.academic && (
-          <p className="text-error">{formState.errors.academic.message}</p>
+          <p className="text-error label">
+            {formState.errors.academic.message}
+          </p>
         )}
-      </div>
+      </fieldset>
 
       {/* Date */}
-      <div>
-        <label
+      <fieldset className="fieldset">
+        <legend className="fieldset-legend">Date</legend>
+        <input
+          type="date"
           className={`input w-full ${formState.errors.date && "input-error"}`}
-        >
-          <span className="label">Date</span>
-          <input
-            type="date"
-            {...register("date")}
-          />
-        </label>
+          {...register("date")}
+        />
         {formState.errors.date && (
-          <p className="text-error">{formState.errors.date.message}</p>
+          <p className="text-error label">{formState.errors.date.message}</p>
         )}
-      </div>
+      </fieldset>
 
       {/* Time */}
-      <div>
-        <label
+      <fieldset className="fieldset">
+        <legend className="fieldset-legend">Time</legend>
+        <input
+          type="time"
           className={`input w-full ${formState.errors.time && "input-error"}`}
-        >
-          <span className="label">Time</span>
-          <input
-            type="time"
-            {...register("time")}
-          />
-        </label>
+          {...register("time")}
+        />
         {formState.errors.time && (
-          <p className="text-error">{formState.errors.time.message}</p>
+          <p className="text-error label">{formState.errors.time.message}</p>
         )}
-      </div>
+      </fieldset>
 
       {/* Place */}
-      <div>
-        <label
+      <fieldset className="fieldset">
+        <legend className="fieldset-legend">Place</legend>
+        <input
+          type="text"
           className={`input w-full ${formState.errors.place && "input-error"}`}
-        >
-          <span className="label">Place</span>
-          <input
-            type="text"
-            placeholder="Seminar room"
-            {...register("place")}
-          />
-        </label>
+          placeholder="Eg. Seminar room"
+          {...register("place")}
+        />
         {formState.errors.place && (
-          <p className="text-error">{formState.errors.place.message}</p>
+          <p className="text-error label">{formState.errors.place.message}</p>
         )}
-      </div>
+      </fieldset>
     </>
   );
 };

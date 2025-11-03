@@ -83,7 +83,7 @@ export const GroupsTable = ({ form }: { form: UseFormReturn<Invitation> }) => {
                   <th>Title</th>
                   <th className="flex justify-end">
                     <button
-                      className="btn btn-circle"
+                      className="btn btn-circle btn-primary"
                       type="button"
                       onClick={handleAdd}
                     >
@@ -122,7 +122,7 @@ export const GroupsTable = ({ form }: { form: UseFormReturn<Invitation> }) => {
         {form.formState.errors.groups && (
           <div
             role="alert"
-            className="alert alert-error mt-2"
+            className="alert alert-error alert-soft mt-2"
           >
             <Info />
             <span>{form.formState.errors.groups.message}</span>
@@ -160,7 +160,7 @@ const GroupItem = ({
       style={style}
       {...attributes}
     >
-      <td>
+      <td className="whitespace-nowrap">
         <span
           className="cursor-grab"
           {...listeners}
@@ -169,7 +169,7 @@ const GroupItem = ({
         </span>
         {index + 1}
       </td>
-      <td>
+      <td className="whitespace-nowrap">
         {group.members.map((member, i) => (
           <p key={i}>
             {member.name}
@@ -177,22 +177,22 @@ const GroupItem = ({
           </p>
         ))}
       </td>
-      <td>
+      <td className="whitespace-nowrap">
         {group.members.map((member, i) => (
           <p key={i}>{member.rollNo}</p>
         ))}
       </td>
       <td>{group.title}</td>
-      <td className="flex justify-end gap-2">
+      <td className="flex justify-end gap-2 whitespace-nowrap">
         <button
-          className="btn btn-circle btn-secondary"
+          className="btn btn-sm btn-circle btn-secondary"
           type="button"
           onClick={handleEdit}
         >
           <Edit2 className="w-4 h-4" />
         </button>
         <button
-          className="btn btn-circle btn-error"
+          className="btn btn-sm btn-circle btn-error"
           type="button"
           onClick={handleRemove}
         >
