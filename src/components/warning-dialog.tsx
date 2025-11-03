@@ -50,7 +50,10 @@ export const WarningDialog = ({
               </button>
               <button
                 className="btn btn-primary"
-                onClick={onClick}
+                onClick={() => {
+                  onClick();
+                  ref.current?.close();
+                }}
               >
                 Generate
               </button>
