@@ -7,27 +7,27 @@ export const DEPARTMENTS = [
     templateId: env.IT_TEMPLATE_ID,
   },
   {
-    long: "Civil",
+    long: "Civil Engineering",
     short: "CIVIL",
     templateId: env.CIVIL_TEMPLATE_ID,
   },
   {
-    long: "Electronic Circuit",
+    long: "Electronic Engineering",
     short: "EC",
     templateId: env.EC_TEMPLATE_ID,
   },
   {
-    long: "Electrical Power",
+    long: "Electrical Power Engineering",
     short: "EP",
     templateId: env.EP_TEMPLATE_ID,
   },
   {
-    long: "Mechenical",
+    long: "Mechanical Engineering",
     short: "MECH",
     templateId: env.MECH_TEMPLATE_ID,
   },
   {
-    long: "Mining",
+    long: "Mining Engineering",
     short: "MN",
     templateId: env.MINING_TEMPLATE_ID,
   },
