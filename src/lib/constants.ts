@@ -1,27 +1,35 @@
+import { env } from "../config/env";
+
 export const DEPARTMENTS = [
   {
     long: "Computer Engineering and Information Technology",
     short: "CEIT",
+    templateId: env.IT_TEMPLATE_ID,
   },
   {
     long: "Civil",
     short: "CIVIL",
+    templateId: env.CIVIL_TEMPLATE_ID,
   },
   {
     long: "Electronic Circuit",
     short: "EC",
+    templateId: env.EC_TEMPLATE_ID,
   },
   {
-    long: "Electronic Power",
+    long: "Electrical Power",
     short: "EP",
+    templateId: env.EP_TEMPLATE_ID,
   },
   {
     long: "Mechenical",
     short: "MECH",
+    templateId: env.MECH_TEMPLATE_ID,
   },
   {
     long: "Mining",
     short: "MN",
+    templateId: env.MINING_TEMPLATE_ID,
   },
 ];
 
