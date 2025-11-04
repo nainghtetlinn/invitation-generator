@@ -173,16 +173,19 @@ const GroupItem = ({
       style={style}
       {...attributes}
     >
-      <td className="whitespace-nowrap">
-        <span
-          className="cursor-grab"
-          {...listeners}
-        >
+      <td
+        {...listeners}
+        className="whitespace-nowrap cursor-grab"
+      >
+        <span>
           <GripVertical className="w-4 h-4 inline mr-2 opacity-60" />
         </span>
         {index + 1}
       </td>
-      <td className="whitespace-nowrap">
+      <td
+        {...listeners}
+        className="whitespace-nowrap cursor-grab"
+      >
         {group.members.map((member, i) => (
           <p key={i}>
             {member.name}
@@ -190,12 +193,20 @@ const GroupItem = ({
           </p>
         ))}
       </td>
-      <td className="whitespace-nowrap">
+      <td
+        {...listeners}
+        className="whitespace-nowrap cursor-grab"
+      >
         {group.members.map((member, i) => (
           <p key={i}>{member.rollNo}</p>
         ))}
       </td>
-      <td>{group.title}</td>
+      <td
+        {...listeners}
+        className="cursor-grab"
+      >
+        {group.title}
+      </td>
       <td className="flex justify-end gap-2 whitespace-nowrap">
         <button
           className="btn btn-sm btn-circle btn-secondary"
