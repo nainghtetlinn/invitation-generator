@@ -1,5 +1,5 @@
 import type { UseFormReturn } from "react-hook-form";
-import { DEPARTMENTS, YEARS } from "../lib/constants";
+import { DEPARTMENTS, TYPES, YEARS } from "../lib/constants";
 import type { Invitation } from "../lib/schema";
 
 export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
@@ -7,6 +7,30 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
 
   return (
     <>
+      {/* Academic */}
+      <fieldset className="fieldset">
+        <legend className="fieldset-legend">Type of Invitation</legend>
+        <input
+          type="text"
+          list="type-suggestions"
+          autoComplete="off"
+          className={`input w-full ${formState.errors.type && "input-error"}`}
+          placeholder="Eg. Title Seminar"
+          {...register("type")}
+        />
+        <datalist id="type-suggestions">
+          {TYPES.map((t) => (
+            <option
+              key={t}
+              value={t}
+            />
+          ))}
+        </datalist>
+        {formState.errors.type && (
+          <p className="text-error label">{formState.errors.type.message}</p>
+        )}
+      </fieldset>
+
       {/* Department */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Department</legend>
@@ -37,7 +61,6 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
           </p>
         )}
       </fieldset>
-
       {/* Year */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Year</legend>
@@ -64,7 +87,6 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
           <p className="text-error label">{formState.errors.year.message}</p>
         )}
       </fieldset>
-
       {/* Academic */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Academic Year</legend>
@@ -101,7 +123,6 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
           </p>
         )}
       </fieldset>
-
       {/* Date */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Date</legend>
@@ -114,7 +135,6 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
           <p className="text-error label">{formState.errors.date.message}</p>
         )}
       </fieldset>
-
       {/* Time */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Time</legend>
@@ -127,7 +147,6 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
           <p className="text-error label">{formState.errors.time.message}</p>
         )}
       </fieldset>
-
       {/* Place */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Place</legend>

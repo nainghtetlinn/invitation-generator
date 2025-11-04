@@ -4,6 +4,7 @@ import { type Invitation } from "./schema";
 
 export const toDto = (data: Invitation) => {
   return {
+    type: data.type,
     department: DEPARTMENTS.find((d) => d.short === data.department),
     year: YEARS.find((y) => y.text === data.year),
     academic: data.academic,
