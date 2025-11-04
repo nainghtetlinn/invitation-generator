@@ -52,7 +52,7 @@ function App() {
         ref={confirmRef}
       />
       <Header />
-      <main className="mx-auto container px-2 py-4 min-h-svh">
+      <main className="mx-auto container max-w-5xl px-2 py-4 min-h-svh">
         <section className="space-y-2">
           <FormFields form={form} />
 
