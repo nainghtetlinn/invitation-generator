@@ -26,6 +26,16 @@ export async function generate(data: Invitation) {
           arr.map((m) => `${m.rollNo}${m.repeater ? " ®" : ""}`).join("\n"),
         upper: (str: string) => str.toUpperCase(),
         lower: (str: string) => str.toLowerCase(),
+        capitalize: (str: string) =>
+          str
+            .split("\n")
+            .map((line) =>
+              line
+                .split(" ")
+                .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+                .join(" ")
+            )
+            .join("\n"),
       },
     }),
   });

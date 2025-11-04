@@ -172,11 +172,11 @@ const MemberItem = ({
       style={style}
       {...attributes}
     >
-      <td className="whitespace-nowrap">
-        <span
-          className="cursor-grab"
-          {...listeners}
-        >
+      <td
+        {...listeners}
+        className="whitespace-nowrap cursor-grab"
+      >
+        <span>
           <GripVertical className="w-4 h-4 inline mr-2 opacity-60" />
         </span>
         {index + 1}

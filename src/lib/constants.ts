@@ -65,3 +65,12 @@ export const YEARS = [
     suffix: "th",
   },
 ];
+
+export const TYPES = [
+  "Title Seminar",
+  "Title Defense",
+  "1st Seminar",
+  "2nd Seminar",
+  "Pre Defense",
+  "Defense",
+];
