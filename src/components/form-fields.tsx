@@ -70,12 +70,31 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
         <legend className="fieldset-legend">Academic Year</legend>
         <input
           type="text"
+          list="suggestions"
+          autoComplete="off"
           className={`input w-full ${
             formState.errors.academic && "input-error"
           }`}
           placeholder="Eg. 2019-2020"
           {...register("academic")}
         />
+        <datalist id="suggestions">
+          <option
+            value={`${
+              new Date().getFullYear() - 1
+            }-${new Date().getFullYear()}`}
+          />
+          <option
+            value={`${new Date().getFullYear()}-${
+              new Date().getFullYear() + 1
+            }`}
+          />
+          <option
+            value={`${new Date().getFullYear() + 1}-${
+              new Date().getFullYear() + 2
+            }`}
+          />
+        </datalist>
         {formState.errors.academic && (
           <p className="text-error label">
             {formState.errors.academic.message}
