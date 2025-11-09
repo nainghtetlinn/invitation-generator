@@ -7,7 +7,7 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
 
   return (
     <>
-      {/* Academic */}
+      {/* Type of Invitation */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Type of Invitation</legend>
         <input
@@ -28,6 +28,24 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
         </datalist>
         {formState.errors.type && (
           <p className="text-error label">{formState.errors.type.message}</p>
+        )}
+      </fieldset>
+
+      {/* Professor */}
+      <fieldset className="fieldset">
+        <legend className="fieldset-legend">Professor Name</legend>
+        <input
+          type="text"
+          className={`input w-full ${
+            formState.errors.professor && "input-error"
+          }`}
+          placeholder="Eg. Dr. Tsuki"
+          {...register("professor")}
+        />
+        {formState.errors.professor && (
+          <p className="text-error label">
+            {formState.errors.professor.message}
+          </p>
         )}
       </fieldset>
 
