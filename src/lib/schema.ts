@@ -23,6 +23,7 @@ export const groupSchema = z.object({
 
 export const invitationSchema = z.object({
   type: z.string().min(1, "Type of invitation is required"),
+  professor: z.string().min(1, "Professor name is required"),
   department: z
     .string()
     .refine(
