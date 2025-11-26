@@ -24,20 +24,22 @@ export const WarningDialog = ({
               <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-yellow-600" />
               <div>
                 <h3 className="font-semibold text-yellow-900">
-                  Important Notice
+                  အရေးကြီး အသိပေးချက်
                 </h3>
                 <p className="text-sm leading-relaxed text-yellow-800">
-                  This app generates invitation letters using a fixed template
-                  created in 2025. After generation, please review the{" "}
-                  <strong>downloaded document</strong> and make any necessary
-                  updates directly in <strong>Microsoft Word</strong> before
-                  using or sharing it.
+                  ဤ Application သည် ၂၀၂၅ ခုနှစ် ပုံစံ (Fixed Template) ကို
+                  အသုံးပြုထားပါသည်။ ထို့ကြောင့် စာထုတ်ယူပြီးပါက{" "}
+                  <strong>ဒေါင်းလုဒ်ရယူထားသော ဖိုင်</strong> ကို သေချာစွာ
+                  ပြန်လည်စစ်ဆေးပြီး၊ အသုံးမပြုမီ သို့မဟုတ် သူတစ်ပါးထံ မပေးပို့မီ{" "}
+                  <strong>Microsoft Word</strong> တွင် လိုအပ်သည်များကို
+                  တိုက်ရိုက် ပြင်ဆင်ဖြည့်စွက်ပေးပါ။
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-yellow-800">
-                  Please note that the invitation format may vary between
-                  departments. This version was designed based on the{" "}
-                  <strong>Information Technology (IT)</strong> major. Other
-                  majors may require different formatting or wording.
+                  ဌာနအလိုက် ဖိတ်ကြားစာပုံစံများ ကွဲပြားနိုင်သည်ကို သတိပြုပါ။
+                  ဤပုံစံသည် <strong>Information Technology (IT)</strong>{" "}
+                  မေဂျာအတွက် ရည်ရွယ်ပြီး ပြုလုပ်ထားခြင်းဖြစ်သည့်အတွက်
+                  အခြားမေဂျာများအနေဖြင့် ပုံစံ သို့မဟုတ် စာသားအသုံးအနှုန်း
+                  အပြောင်းအလဲရှိနိုင်ပါသည်။
                 </p>
               </div>
             </div>
