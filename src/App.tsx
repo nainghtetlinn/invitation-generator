@@ -3,14 +3,13 @@ import { Loader2 } from "lucide-react";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Footer } from "./components/footer";
 import { FormFields } from "./components/form-fields";
 import { GroupsTable } from "./components/groups-table";
-import { Header } from "./components/header";
 import { Toast } from "./components/toast";
 import { WarningDialog } from "./components/warning-dialog";
 import { invitationSchema, type Invitation } from "./lib/schema";
 import { generate } from "./lib/utils";
+import { Link } from "react-router-dom";
 
 function App() {
   const confirmRef = useRef<HTMLDialogElement | null>(null);
@@ -52,14 +51,22 @@ function App() {
         onClick={form.handleSubmit(onSubmit)}
         ref={confirmRef}
       />
-      <Header />
       <main className="mx-auto container max-w-5xl px-2 py-4 min-h-svh">
         <section className="space-y-2">
           <FormFields form={form} />
 
           <GroupsTable form={form} />
         </section>
-        <div className="flex justify-end mt-4">
+        <div className="flex justify-between mt-4">
+          <p>
+            Do you want to edit yourself?{" "}
+            <Link
+              to="/download"
+              className="link"
+            >
+              download templates
+            </Link>
+          </p>
           <button
             type="button"
             disabled={loading}
@@ -70,7 +77,6 @@ function App() {
           </button>
         </div>
       </main>
-      <Footer />
     </>
   );
 }
