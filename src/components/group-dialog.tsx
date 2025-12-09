@@ -48,7 +48,7 @@ export const GroupDialog = ({
 
             <section className="space-y-4">
               <fieldset className="fieldset">
-                <legend className="fieldset-legend">Group Title</legend>
+                <legend className="fieldset-legend">Project Title</legend>
                 <input
                   type="text"
                   className={`input w-full ${
