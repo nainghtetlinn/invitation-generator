@@ -10,22 +10,25 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
       {/* Type of Invitation */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Type of Invitation</legend>
-        <input
-          type="text"
-          list="type-suggestions"
-          autoComplete="off"
-          className={`input w-full ${formState.errors.type && "input-error"}`}
-          placeholder="Eg. Title Seminar"
+        <select
           {...register("type")}
-        />
-        <datalist id="type-suggestions">
-          {TYPES.map((t) => (
+          className={`select w-full ${formState.errors.type && "select-error"}`}
+        >
+          <option
+            disabled
+            value="select a type"
+          >
+            Select a type
+          </option>
+          {TYPES.map((d) => (
             <option
-              key={t}
-              value={t}
-            />
+              key={d}
+              value={d}
+            >
+              {d}
+            </option>
           ))}
-        </datalist>
+        </select>
         {formState.errors.type && (
           <p className="text-error label">{formState.errors.type.message}</p>
         )}

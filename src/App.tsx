@@ -19,6 +19,7 @@ function App() {
   const form = useForm({
     resolver: zodResolver(invitationSchema),
     defaultValues: {
+      type: "select a type",
       department: "select a department",
       year: "select a year",
       academic: "",
