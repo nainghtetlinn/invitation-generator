@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { FormFields } from "./components/form-fields";
@@ -10,6 +10,8 @@ import { WarningDialog } from "./components/warning-dialog";
 import { invitationSchema, type Invitation } from "./lib/schema";
 import { generate } from "./lib/utils";
 import { Link } from "react-router-dom";
+
+const STORAGE_KEY = "invitation-form";
 
 function App() {
   const confirmRef = useRef<HTMLDialogElement | null>(null);
@@ -44,6 +46,26 @@ function App() {
   const handleGenerate = () => {
     confirmRef.current?.showModal();
   };
+
+  useEffect(() => {
+    const subscription = form.watch((values) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+    });
+
+    return () => subscription.unsubscribe();
+  }, [form]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        form.reset(parsed);
+      } catch (e: unknown) {
+        console.error("Failed to parse saved form data", e);
+      }
+    }
+  }, []);
 
   return (
     <>
