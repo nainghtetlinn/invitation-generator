@@ -1,18 +1,21 @@
 import { DEPARTMENTS } from "./lib/constants";
+import { downloadTemplate } from "./lib/utils";
 
 export const Download = () => {
   return (
     <main className="mx-auto container max-w-5xl px-2 py-4 min-h-[700px]">
       <ul>
         {DEPARTMENTS.map((dep) => (
-          <li>
-            <a
-              download
-              href={`https://drive.google.com/uc?export=download&id=${dep.templateId}`}
+          <li key={dep.short}>
+            <button
+              type="button"
               className="link"
+              onClick={() => {
+                void downloadTemplate(dep);
+              }}
             >
               {dep.long}
-            </a>
+            </button>
           </li>
         ))}
       </ul>
