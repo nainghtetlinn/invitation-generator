@@ -35,14 +35,12 @@ A web application for generating Microsoft Word (`.docx`) invitation letters for
 git clone https://github.com/nainghtetlinn/invitation-generator.git
 cd invitation-generator
 pnpm install
-
 ```
 
 ### Development
 
 ```bash
 pnpm dev
-
 ```
 
 The app will be available at `http://localhost:5173`.
@@ -51,7 +49,6 @@ The app will be available at `http://localhost:5173`.
 
 ```bash
 pnpm build
-
 ```
 
 ## How It Works
