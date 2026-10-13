@@ -1,6 +1,9 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
 [[redirects]]
   from = "/*"
-  to = "/"
+  to = "/index.html"
   status = 200
   force = true
-
