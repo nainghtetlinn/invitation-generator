@@ -10,25 +10,22 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
       {/* Type of Invitation */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Type of Invitation</legend>
-        <select
+        <input
+          type="text"
+          list="type-suggestions"
+          autoComplete="off"
+          className={`input w-full ${formState.errors.type && "input-error"}`}
+          placeholder="Eg. Title Defense"
           {...register("type")}
-          className={`select w-full ${formState.errors.type && "select-error"}`}
-        >
-          <option
-            disabled
-            value="select a type"
-          >
-            Select a type
-          </option>
-          {TYPES.map((d) => (
+        />
+        <datalist id="type-suggestions">
+          {TYPES.map((t) => (
             <option
-              key={d}
-              value={d}
-            >
-              {d}
-            </option>
+              key={t}
+              value={t}
+            />
           ))}
-        </select>
+        </datalist>
         {formState.errors.type && (
           <p className="text-error label">{formState.errors.type.message}</p>
         )}
@@ -82,6 +79,7 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
           </p>
         )}
       </fieldset>
+
       {/* Year */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Year</legend>
@@ -108,6 +106,7 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
           <p className="text-error label">{formState.errors.year.message}</p>
         )}
       </fieldset>
+
       {/* Academic */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Academic Year</legend>
@@ -144,6 +143,7 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
           </p>
         )}
       </fieldset>
+
       {/* Date */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Date</legend>
@@ -168,6 +168,7 @@ export const FormFields = ({ form }: { form: UseFormReturn<Invitation> }) => {
           <p className="text-error label">{formState.errors.time.message}</p>
         )}
       </fieldset>
+
       {/* Place */}
       <fieldset className="fieldset">
         <legend className="fieldset-legend">Place</legend>

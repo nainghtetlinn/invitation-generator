@@ -28,7 +28,7 @@ export const invitationSchema = z.object({
     .string()
     .refine(
       (val) => DEPARTMENTS.find((d) => d.short === val),
-      "Please select a department"
+      "Please select a department",
     ),
   year: z
     .string()
@@ -41,14 +41,14 @@ export const invitationSchema = z.object({
     })
     .refine(
       (date) => new Date(date) > new Date(),
-      "Date cannot be in the past"
+      "Date cannot be in the past",
     ),
   time: z.string().min(1, "Time is required"),
   place: z.string().min(1, "Place is required"),
   groups: z
     .array(groupSchema)
     .min(1, "At least one group is required")
-    .max(5, "You can add at most 5 groups"),
+    .max(10, "You can add at most 10 groups"),
 });
 
 export type Invitation = z.infer<typeof invitationSchema>;
