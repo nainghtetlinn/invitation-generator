@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import App from "./App.tsx";
 import { Download } from "./Download.tsx";
+import { LandingPage } from "./LandingPage.tsx";
 import "./index.css";
 import { Layout } from "./Layout.tsx";
 
@@ -15,6 +16,10 @@ createRoot(document.getElementById("root")!).render(
         <Route element={<Layout />}>
           <Route
             path="/"
+            element={<LandingPage />}
+          />
+          <Route
+            path="/generate"
             element={<App />}
           />
           <Route
