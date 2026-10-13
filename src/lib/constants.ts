@@ -70,5 +70,5 @@ export const TYPES = [
   "1st Seminar",
   "2nd Seminar",
   "Pre Defense",
-  "Defense",
+  "Defense Seminar",
 ];
