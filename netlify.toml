@@ -1,0 +1,6 @@
+[[redirects]]
+  from = "/download"
+  to = "/"
+  status = 200
+  force = true
+
